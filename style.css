@@ -1,0 +1,879 @@
+/* Affichage du debut */
+
+#splash {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    animation: splashFade 2.8s forwards;
+}
+
+#splash h1 {
+    font-size: 90px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: white;
+    animation: textSlide 2.8s forwards;
+}
+
+/* animation du texte  */
+@keyframes textSlide {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-20px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-60px);
+        opacity: 0;
+    }
+}
+
+/* animation du fond (disparition) */
+@keyframes splashFade {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Reset */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#0f172a;
+    color:white;
+    scroll-behavior:smooth;
+}
+
+
+/* Navbar */
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:1000;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(8px);
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+}
+
+nav .logo{
+    font-size:26px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+    position:relative;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    width:0%;
+    height:2px;
+    background:#f97316;
+    left:0;
+    bottom:-5px;
+    transition:0.3s;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+
+/* Hero */
+
+.hero{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:0 20px;
+}
+
+.hero h1{
+    font-size:70px;
+    font-weight:800;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:20px;
+    opacity:0.9;
+}
+
+.btn{
+    margin-top:25px;
+    padding:15px 35px;
+    border-radius:40px;
+    background:#f97316;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 10px 30px rgba(249,115,22,0.5);
+}
+
+/*  GALERIE  */
+.gallery{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    padding:10px 0 20px 0;
+}
+
+.gallery img{
+    width:320px;
+    height:220px;
+    object-fit:cover;
+    border-radius:18px;
+    flex-shrink:0;
+    cursor:pointer;
+    transition:0.4s ease;
+}
+
+.gallery img:hover{
+    transform:scale(1.07);
+}
+
+.gallery::-webkit-scrollbar{
+    height:6px;
+}
+
+.gallery::-webkit-scrollbar-thumb{
+    background:#bbb;
+    border-radius:10px;
+}
+
+
+
+
+/*  LIGHTBOX  */
+.lightbox{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:rgba(0,0,0,0.92);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s ease;
+    z-index:1000;
+}
+
+.lightbox:target{
+    opacity:1;
+    visibility:visible;
+}
+
+.lightbox img{
+    max-width:80%;
+    max-height:80%;
+    border-radius:20px;
+}
+
+.close{
+    position:absolute;
+    top:30px;
+    right:40px;
+    font-size:42px;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.close:hover{
+    transform:scale(1.2);
+}
+
+.history p {
+    max-height: none;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.history:hover p {
+    max-height: none; /* assez grand pour une longue histoire */
+    opacity: 1;
+}
+
+#why .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px; /* espace entre les cartes */
+}
+
+#why .history {
+    grid-column: 1 / -1; 
+    margin-top: 20px; /* petit espace au-dessus */
+}
+
+#transformation .trans-images img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:10px;
+}
+
+/* Images dans les cards  */
+.cardzoom {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+}
+
+
+.coach-card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+
+/* Sections */
+
+section{
+    padding:100px 8%;
+    background:#0f172a;
+}
+
+#why{
+    background:
+    linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),
+    url("https://images.unsplash.com/photo-1599058917765-a780eda07a3e");
+    background-size:cover;
+    background-attachment:fixed;
+}
+
+
+/* Grid */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+    margin-top:50px;
+}
+
+/* SECTION CLUB */
+#Clubs {
+    text-align: center;
+    padding: 80px 8%;
+    background: #0f172a;
+}
+
+/* conteneur */
+.club-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* bouton club */
+.club-btn {
+    padding: 15px 40px;
+    background: #f97316;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.club-btn:hover {
+    transform: scale(1.05);
+}
+
+/* dropdown caché */
+.club-dropdown {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: none;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 20px;
+    gap: 20px;
+
+    width: 650px;
+
+    z-index: 1000;
+}
+
+/* afficher au survol */
+.club-container:hover .club-dropdown {
+    display: flex;
+}
+
+/* cartes club */
+.club-item {
+    width: 200px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.club-item:hover {
+    transform: translateY(-6px);
+}
+
+.club-item img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+
+/* Cards */
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border-radius:20px;
+    padding:30px;
+    backdrop-filter:blur(10px);
+    transition:0.4s;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover{
+    transform:translateY(-12px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
+
+
+/* Pourquoi nous */
+
+#why .card p{
+    max-height:40px;
+    overflow:hidden;
+    transition:0.4s;
+}
+
+#why .card:hover p{
+    max-height:200px;
+}
+
+
+/* Salles */
+
+#salles .card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+
+/* Abonnements */
+
+#abonnements{
+    background:
+    linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.85)),
+    url("https://images.unsplash.com/photo-1576678927484-cc907957088c");
+    background-size:cover;
+    background-attachment:fixed;
+}
+
+.abonnement{
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+}
+
+.abonnement ul{
+    list-style:none;
+    margin-top:15px;
+    max-height:0;
+    overflow:hidden;
+    transition:0.5s;
+}
+
+.abonnement:hover ul{
+    max-height:300px;
+}
+
+.abonnement .prix{
+    font-size:28px;
+    color:#f97316;
+    margin:10px 0;
+}
+
+.abonnement button{
+    margin-top:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#f97316;
+    color:white;
+    cursor:pointer;
+}
+
+
+/*seance*/
+#seances {
+    padding: 90px 8%;
+    background: #ffffff;
+    text-align: center;
+}
+
+#seances h2 {
+    color: #111;
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+#seances .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+#seances .card {
+    background: #f8f9fb;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    color: #111;
+}
+
+#seances .card h3 {
+    color: #111;
+}
+
+#seances .card .prix {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f97316;
+}
+
+#seances .card p {
+    color: #333;
+}
+
+#seances .card a {
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.btn-animated {
+    background: #111;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-animated:hover {
+    background: #333;
+}
+
+/* Formulaire dans la lightbox */
+.form-box {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    color: #111;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.form-box h2 {
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.form-box input,
+.form-box select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.form-box label {
+    margin-top: 15px;
+    display: block;
+    text-align: left;
+    font-weight: 500;
+    color: #111;
+}
+
+.form-box .btn-animated {
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Bouton fermer (croix) */
+.form-box .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    color: black;
+    text-decoration: none;
+}
+
+/*boutique*/
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.category {
+    background: white;
+    color: black;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.category:hover {
+    transform: translateY(-5px);
+    background: #0f172a;
+    color: white;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card h3 {
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+.card p {
+    margin-top: 8px;
+    color:white;
+    font-weight: bold;
+}
+
+.card label {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.card select {
+    margin-top: 6px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* zoom image */
+.zoom img {
+    transition: 0.4s ease;
+}
+
+.zoom:hover img {
+    transform: scale(1.05);
+}
+
+/*  BOUTON AJOUTER AU PANIER  */
+
+.btn-animated {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 12px 18px;
+    border-radius: 25px;
+    background: #f97316;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-animated:hover {
+    background: #e65c00;
+    transform: translateY(-3px);
+}
+
+/*  POPUP LIGHTBOX (PANIER)  */
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    z-index: 1000;
+}
+
+.lightbox:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.form-box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 32px;
+    color: white;
+    text-decoration: none;
+}
+
+/*  RESPONSIVE  */
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Footer */
+
+footer{
+    background:
+    linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.9)),
+    url("https://images.unsplash.com/photo-1583454110551-21f2fa2afe61");
+    background-size:cover;
+    background-attachment:fixed;
+    padding:120px 8%;
+    text-align:center;
+}
+
+footer h2{
+    font-size:40px;
+    margin-bottom:30px;
+}
+
+.contact-form input,
+.contact-form textarea{
+    background:rgba(255,255,255,0.1);
+    border:none;
+    padding:15px;
+    color:white;
+    border-radius:10px;
+}
+
+.contact-form button{
+    margin-top:15px;
+    padding:15px;
+    background:#f97316;
+    border:none;
+    border-radius:30px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/*crenaus*/
+#reservation{
+    padding:80px 20px;
+    background:#f8f9fb;
+    text-align:center;
+}
+
+#reservation h2{
+    font-size:32px;
+    margin-bottom:40px;
+    font-weight:600;
+}
+
+.form-vertical{
+    max-width:500px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.08);
+}
+
+.form-vertical label{
+    text-align:left;
+    font-weight:500;
+    font-size:14px;
+}
+
+.form-vertical input,
+.form-vertical select{
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #e0e0e0;
+    font-size:15px;
+    transition:0.3s ease;
+}
+
+.form-vertical input:focus,
+.form-vertical select:focus{
+    outline:none;
+    border:1px solid black;
+    box-shadow:0 0 0 3px rgba(0,0,0,0.05);
+}
+
+/*choir abonnement*/
+.choose-btn {
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 25px;
+    border-radius:30px;
+    background:#f97316;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s ease;
+}
+
+.choose-btn:hover {
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(249,115,22,0.4);
+}
+
+.btn-animated{
+    margin-top:10px;
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    background:black;
+    color:white;
+    font-size:15px;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.btn-animated:hover{
+    background:#333;
+    transform:translateY(-3px);
+}
+
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:40px;
+}
+
+nav ul{
+    flex-direction:column;
+    gap:10px;
+}
+
+}
+
