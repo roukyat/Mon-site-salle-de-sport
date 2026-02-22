@@ -540,3 +540,21 @@ footer {
         padding: 40px 5%;
     }
 }
+
+
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 60vh;
+    }
+}
+
+
+
+
+
+
+.gallery img {
+    width: 70%;
+    max-width: 280px;
+}
